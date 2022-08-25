@@ -4,11 +4,11 @@ import { NoteList } from '../cmps/note-list.jsx'
 import { NoteFilter } from '../cmps/note-filter.jsx'
 import { NoteEdit } from "../cmps/note-edit.jsx"
 
-const { Link, Route } = ReactRouterDOM
-
+const { Link, Route, Switch } = ReactRouterDOM
 export class NoteIndex extends React.Component {
     state = {
-        notes: []
+        notes: [],
+        filterBy: null
     }
     componentDidMount() {
         this.loadNotes()
@@ -21,8 +21,13 @@ export class NoteIndex extends React.Component {
     }
 
     loadNotes = () => {
-        notesService.query()
+        notesService.query(this.state.filterBy)
             .then((notes) => this.setState({ notes }))
+    }
+
+    onSetFilter = (filterBy) => {
+        console.log('filter');
+        this.setState({ filterBy }, this.loadNotes)
     }
 
     onRemoveNote = (noteId) => {
@@ -49,18 +54,43 @@ export class NoteIndex extends React.Component {
             })
     }
 
+    onDuplicateNote = (ev, noteId) => {
+        ev.preventDefault()
+        console.log('event:', ev)
+        console.log('noteId:', noteId)
+        notesService.duplicateNote(noteId)
+            .then(() => {
+                this.loadNotes()
+            })
+    }
+
     render() {
         const { notes } = this.state
-        console.log('notes:', notes)
+        const piningNotes = notes.filter(note => note.isPinned)
+        const unPining = notes.filter(note => (!note.isPinned))
+        const {loadNotes} =this
         if (!notes[0]) return 'Loading...'
         return (
             <section className="note-index app-layout">
                 <div className="side-bar">
-                    <NoteFilter />
+                    <NoteFilter onSetFilter={this.onSetFilter} />
+
                 </div>
-                <div className="main-app">
-                    <NoteList notes={notes} onRemoveNote={this.onRemoveNote} onChangeColor={this.onChangeColor} onPiningNote={this.onPiningNote} />
+                <div className="main-app ">
+                    <Link to={{ pathname: "/note/edit", state: { 'decrease': loadNotes } }}>add note</Link>
+                    {/* <Link to='/note/edit'>add note</Link> */}
+                    <NoteList notes={piningNotes} onRemoveNote={this.onRemoveNote}
+                        onChangeColor={this.onChangeColor} onPiningNote={this.onPiningNote}
+                        onDuplicateNote={this.onDuplicateNote} loadNotes={this.loadNotes}/>
+                    <NoteList notes={unPining} onRemoveNote={this.onRemoveNote}
+                        onChangeColor={this.onChangeColor} onPiningNote={this.onPiningNote}
+                        onDuplicateNote={this.onDuplicateNote} loadNotes={this.loadNotes}/>
                 </div>
+
+                <Switch>
+                    <Route path="/note/edit/:noteId?" component={NoteEdit} />
+                    <Route path="/note/edit" component={NoteEdit} />
+                </Switch>
             </section>
         )
     }

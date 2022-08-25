@@ -21,8 +21,7 @@ const gNotes = [
         style: {
             backgroundColor: "red"
         }
-    }
-    ,
+    },
     {
         id: "n103",
         type: "note-todos",
@@ -50,14 +49,23 @@ export const notesService = {
     saveNote,
     getById,
     changeNoteStyle,
-    piningNote
+    piningNote,
+    duplicateNote
 }
 
-function query() {
+function query(filterBy) {
     let notes = _loadFromStorage()
     if (!notes) {
         notes = gNotes
         _saveToStorage(notes)
+    }
+
+    if (filterBy) {
+        let { type, search } = filterBy
+        notes = notes.filter(note => {
+            return note.type.includes(type)
+            // note.type.includes(search)
+        })
     }
     return Promise.resolve(notes)
 }
@@ -75,7 +83,16 @@ function piningNote(noteId) {
     let notes = _loadFromStorage()
     let note = notes.find(note => note.id === noteId)
     note.isPinned = (note.isPinned) ? false : true
-    console.log('note.isPinned :', note.isPinned )
+    console.log('note.isPinned :', note.isPinned)
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function duplicateNote(noteId) {
+    let notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    let newNote = {...note, id:utilService.makeId(4) }
+    notes.unshift(newNote)
     _saveToStorage(notes)
     return Promise.resolve()
 }
