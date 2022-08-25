@@ -15,6 +15,8 @@ export class MailApp extends React.Component {
             .then(mails => this.setState({ mails }))
     }
 
+    
+
     onDeleteMail = (id) => {
         console.log(id)
         mailService.deleteEmail(id)
@@ -36,7 +38,11 @@ export class MailApp extends React.Component {
         console.log('rendered');
         return (
             <section className="mail-index">
-
+                <ul>
+                    <li>inbox</li>
+                    <li>starred</li>
+                    <li>important</li>
+                </ul>
                 <MailList mails={mails} onDeleteMail={this.onDeleteMail} />
 
             </section>

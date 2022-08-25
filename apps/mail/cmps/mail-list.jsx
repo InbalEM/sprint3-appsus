@@ -22,22 +22,25 @@ export function MailList({ mails, onDeleteMail }) {
                 mails.map(mail =>
                     <li key={mail.id} className="mail-list">
                         <div className='mark-option '>
-                            <p onClick={() => onDeleteMail(mail.id)}>del</p>
+                            <span onClick={() => onDeleteMail(mail.id)}>del</span>
                             {/* <span><img src="../../../assets/css/apps/email/img/icons8-important-note-30.png" alt="" /></span> */}
                             <span className=".star-favorite">☆</span>
                             <input type="checkbox" id="select" name="select" value="select" />
                         </div>
-                        <div><Link to={`/mail/${mail.id}`}>
+                       <Link to={{
+                        pathname: `/mail/${mail.id}`,
+                        state: {decrease: onDeleteMail}
+                        }}>
                             <div className={`mail-preview ${checkRead(mail)}`} key={mail.id}>
                                 <MailPreview mail={mail} />
                             </div>
-                        </Link></div>
+                        </Link>
                         {/* <Route exsect path={`/mail/${mail.id}`} component={MailDetails} /> */}
                     </li>
                     
                 )
             }
         </ul>
-        <Route path={`/mail/:mailId`} component={MailDetails} />
+        <Route path={`/mail/:mailId`} name="mail" component={MailDetails} />
     </section >
 }

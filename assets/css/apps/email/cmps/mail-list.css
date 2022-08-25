@@ -1,0 +1,7 @@
+.mail-list{
+    display: grid;
+    grid-template-columns: 5% 95%;
+    align-items: center;
+    background-color: #c4bfbf;
+    gap: 10px;
+}
