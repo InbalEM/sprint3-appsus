@@ -1,25 +1,28 @@
 
 const { Link } = ReactRouterDOM
+const { Route, NavLink } = ReactRouterDOM
 
-export function MailPreview({ mail }) {
+import { MailDetails } from './mail-details.jsx'
+
+export function MailPreview({ mail, onDeleteMail }) {
 
     function getTime(ms) {
         return
     }
 
-    return <React.Fragment>
+    return <article className="flex space-between align-center">
+
+
         <p className="subject">{mail.subject}</p>
         <p>{mail.sentAt}</p>
-        {/* <Link to={"/car/" + car.id}>
-            <div className="img-container">
-                <img src={`../assets/img/${car.vendor}.jpg`} />
-            </div>
-            </Link> */}
 
 
 
-    </React.Fragment>
+    </article>
+
+
 }
+
 
 
 

@@ -8,11 +8,13 @@ export class MailDetails extends React.Component {
     }
 
     componentDidMount() {
+        console.log('this.props:', this.props)
         this.loadMail()
     }
 
     loadMail = () => {
         const { mailId } = this.props.match.params
+        console.log(mailId)
         mailService.getMailById(mailId)
             .then((mail) => {
                 if (!mail) return
@@ -21,11 +23,21 @@ export class MailDetails extends React.Component {
             })
     }
 
-    onDelete = (id) => {
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log(prevProps.match.params.mailId)
+        console.log(this.props.match.params.mailId)
+        if (prevProps.match.params.mailId !== this.props.match.params.mailId) {
+            this.loadMail()
+        }
+    }
+
+    onExit = (id) => {
+        // console.log(id)
         mailService.deleteEmail(id)
             .then(() => {
                 this.setState({ mail: null })
-                this.props.location.state.loadMails()
+
                 this.props.history.push('/mail')
             })
     }
@@ -36,8 +48,8 @@ export class MailDetails extends React.Component {
         return (
             <section className='main-details'>
 
-                <i class="fa-solid fa-trash-can" onClick={() => this.onDelete(mail.id)}></i>
-
+                <span onClick={() => this.onExit(mail.id)}>X</span>
+                {/* <button onClick={() => this.goBack}>Back</button> */}
                 <h1 className='subject'>subject: {mail.subject}</h1>
                 <h3 className='body'>body: {mail.body}</h3>
             </section>
