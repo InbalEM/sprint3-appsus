@@ -9,7 +9,7 @@ const { Route, Switch } = ReactRouterDOM
 export function NoteApp() {
 
     return <section className="note-app">
-        <AppHeader />
+        {/* <AppHeader /> */}
             <Switch>
                 <Route path="/note" component={NoteIndex} />
                 {/* <Route path="/note/edit/:noteId?" component={NoteEdit} />
