@@ -18,10 +18,8 @@ export class NoteEdit extends React.Component {
 
     loadNote = () => {
         const { noteId } = this.props.match.params
-        console.log('noteId:', noteId)
         if (!noteId) return
         notesService.getById(noteId).then(note => {
-            console.log('note:', note)
             this.setState({ note })
         })
     }
@@ -47,7 +45,6 @@ export class NoteEdit extends React.Component {
         const {note} = this.state
         notesService.saveNote(note)
             .then(() => {
-                console.log('thes:')
                 this.props.history.push('/note')
             })
     }

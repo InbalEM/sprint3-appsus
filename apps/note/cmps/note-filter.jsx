@@ -6,14 +6,24 @@ export class NoteFilter extends React.Component {
         }
     }
 
+    onFilterType = ({ target }) => {
+        console.log('target:', target.value)
+        const { value } = target.value
+        this.setState(prevState => ({
+            ...prevState.filterBy,
+            type: value
+        }))
+    }
+
     render() {
-        <form className="note-filter">
-            <p>djgosdkgjldkjgldkfjl</p>
-            {/* <select for="note-type">
+        return <form className="note-filter">
+            <p>filter</p>
+            <select onChange={this.onFilterType}>
+                <option value=""></option>
                 <option value="note-txt">txt</option>
                 <option value="note-img">image</option>
                 <option value="note-todos">todos</option>
-            </select> */}
+            </select>
         </form>
 
     }

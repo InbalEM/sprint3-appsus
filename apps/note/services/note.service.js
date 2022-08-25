@@ -122,7 +122,7 @@ function _addTxtNote(note) {
 function getById(noteId) {
     if (!noteId) return Promise.resolve(null)
     const notes = _loadFromStorage()
-    const note = notes.find(note => noteId.localeCompare(note.id))
+    let note = notes.find(note => note.id === noteId)
     return Promise.resolve(note)
 }
 
