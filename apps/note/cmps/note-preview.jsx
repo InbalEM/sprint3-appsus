@@ -1,5 +1,7 @@
 import { notesService } from '../services/note.service.js'
 
+const {Link} = ReactRouterDOM
+
 export class NotePreview extends React.Component {
     state = {
         note: null
@@ -17,7 +19,6 @@ export class NotePreview extends React.Component {
                 return <TextNote txt={info.txt} />
             case 'note-img':
                 return <ImgNote url={info.url} title={info.title} />
-
             case 'note-todos':
                 return <TodoNote label={info.label} todos={info.todos} OnCheckTodo={this.OnCheckTodo} />
         }
@@ -27,24 +28,23 @@ export class NotePreview extends React.Component {
         const { id } = this.state.note
         notesService.checkTodo(id, todoIdx)
         this.setState((prevstate) => {
-            const {info} = this.state.note
-            const {todos} = info
-            const {doneAt} = todos[todoIdx]
+            const { info } = this.state.note
+            const { todos } = info
+            const { doneAt } = todos[todoIdx]
             const val = doneAt ? null : Date.now()
             todos[todoIdx].doneAt = val
             return {
                 ...prevstate
             }
-
-        }, )
+        })
     }
-    
+
     render() {
         const { DynamicCmp } = this
         const { note } = this.state
         if (!note) return 'Loading...'
-        return <section className="note-preview">
-            <DynamicCmp />
+        return   <section className="note-preview">
+                <DynamicCmp />
         </section>
     }
 }

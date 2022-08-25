@@ -31,15 +31,29 @@ export class NoteIndex extends React.Component {
             })
     }
 
+    // onChangeColor = (ev) => {
+    //     console.log('ev:', ev.target)
+
+    // }
     onChangeColor = ({target}) => {
-        console.log('ev:', target.value)
+        const backgroundColor = target.value
+        console.log('color:', backgroundColor)
+        console.log('target:', target)
+        const noteId = target.name
+        console.log('carId:', noteId)
+        notesService.changeNoteStyle(noteId, backgroundColor )
+        .then(() => {
+            this.loadNotes()
+        })
     }
+
 
     render() {
         const { notes } = this.state
+        // const {backgroundColor} = notes.style ? notes.style|| ''
         if (!notes[0]) return 'Loading...'
         return (
-            <section className="note-index app-layout ">
+            <section className="note-index">
                 <Link to="/note/edit">add note</Link>
                 <NoteList notes={notes} onRemoveNote={this.onRemoveNote} onChangeColor={this.onChangeColor} />
 

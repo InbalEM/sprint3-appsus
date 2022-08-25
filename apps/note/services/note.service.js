@@ -5,6 +5,9 @@ const gNotes = [
         isPinned: true,
         info: {
             txt: "Fullstack Me Baby!"
+        },
+        style: {
+            backgroundColor: "red"
         }
     },
     {
@@ -15,7 +18,7 @@ const gNotes = [
             title: "Bobi and Me"
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: "red"
         }
     }
     ,
@@ -43,7 +46,8 @@ export const notesService = {
     checkTodo,
     removeNote,
     saveNote,
-    getById
+    getById,
+    changeNoteStyle
 }
 
 function query() {
@@ -83,7 +87,7 @@ function saveNote(note) {
 function _updateTxtNote(noteToUpdate) {
     console.log('update note:', noteToUpdate)
     let notes = _loadFromStorage()
-    notes = notes.map(note => note.id === noteToUpdate.id ? noteToUpdate: note)
+    notes = notes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
     _saveToStorage(notes)
     return Promise.resolve(notes)
 }
@@ -108,6 +112,15 @@ function getById(noteId) {
     const notes = _loadFromStorage()
     const note = notes.find(note => noteId.localeCompare(note.id))
     return Promise.resolve(note)
+}
+
+function changeNoteStyle(noteId, newStyle) {
+    const notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    if (!note.style) note.style = {}
+    note.style.backgroundColor = newStyle
+    _saveToStorage(notes)
+    return Promise.resolve()
 }
 
 function _saveToStorage(notes) {

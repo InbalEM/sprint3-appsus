@@ -1,6 +1,21 @@
-.note-list{
+.note-list {
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 2rem;
+}
+
+.note-list>* {
+    margin: 0px 0px;
+    border: solid 1px lightslategray;
+    /* display: flex; */
+    display: grid;
+    grid-template-rows:  5fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    min-width: 1rem;
+}
+
+input.color {
+    display: none;
 }
