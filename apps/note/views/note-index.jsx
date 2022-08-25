@@ -1,6 +1,7 @@
 
 import { notesService } from '../services/note.service.js'
 import { NoteList } from '../cmps/note-list.jsx'
+import { NoteFilter } from '../cmps/note-filter.jsx'
 import { NoteEdit } from "../cmps/note-edit.jsx"
 
 const { Link, Route } = ReactRouterDOM
@@ -31,35 +32,35 @@ export class NoteIndex extends React.Component {
             })
     }
 
-    // onChangeColor = (ev) => {
-    //     console.log('ev:', ev.target)
-
-    // }
-    onChangeColor = ({target}) => {
+    onChangeColor = ({ target }) => {
         const backgroundColor = target.value
-        console.log('color:', backgroundColor)
-        console.log('target:', target)
         const noteId = target.name
-        console.log('carId:', noteId)
-        notesService.changeNoteStyle(noteId, backgroundColor )
-        .then(() => {
-            this.loadNotes()
-        })
+        notesService.changeNoteStyle(noteId, backgroundColor)
+            .then(() => {
+                this.loadNotes()
+            })
     }
 
+    onPiningNote = (noteId) => {
+        console.log('noteId:', noteId)
+        notesService.piningNote(noteId)
+            .then(() => {
+                this.loadNotes()
+            })
+    }
 
     render() {
         const { notes } = this.state
-        // const {backgroundColor} = notes.style ? notes.style|| ''
+        console.log('notes:', notes)
         if (!notes[0]) return 'Loading...'
         return (
-            <section className="note-index">
-                <Link to="/note/edit">add note</Link>
-                <NoteList notes={notes} onRemoveNote={this.onRemoveNote} onChangeColor={this.onChangeColor} />
-
-                {/* <section>
-                    <Route path="/note/edit" component={NoteEdit} />
-                </section> */}
+            <section className="note-index app-layout">
+                <div className="side-bar">
+                    <NoteFilter />
+                </div>
+                <div className="main-app">
+                    <NoteList notes={notes} onRemoveNote={this.onRemoveNote} onChangeColor={this.onChangeColor} onPiningNote={this.onPiningNote} />
+                </div>
             </section>
         )
     }

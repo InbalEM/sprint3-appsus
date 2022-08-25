@@ -14,7 +14,7 @@ export function App() {
     return <Router>
         <section className="app">
             <AppHeader />
-            <SideBar />
+            {/* <SideBar /> */}
             <Switch>
                 <Route path="/mail" component={MailApp} />
                 {/* <Route path="/note/edit" component={NoteEdit} /> */}

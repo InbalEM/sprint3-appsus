@@ -43,8 +43,11 @@ export class NotePreview extends React.Component {
         const { DynamicCmp } = this
         const { note } = this.state
         if (!note) return 'Loading...'
+        const {isPinned} =note
         return   <section className="note-preview">
-                <DynamicCmp />
+                {isPinned && <DynamicCmp />}
+                <br />
+                {!isPinned && <DynamicCmp />}
         </section>
     }
 }

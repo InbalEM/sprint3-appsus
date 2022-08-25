@@ -1,7 +1,13 @@
 .note-list {
-    margin-top: 1rem;
+    
+    /* margin-top: 1rem; */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
+    /* grid-template-columns: repeat(5, 70rem); */
+    /* grid-template-rows: repeat(5, 200px); */
+    justify-content: center;
+    align-content: center;
     gap: 2rem;
 }
 

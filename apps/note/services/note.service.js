@@ -13,6 +13,7 @@ const gNotes = [
     {
         id: "n102",
         type: "note-img",
+        isPinned: false,
         info: {
             url: "https://upload.wikimedia.org/wikipedia/en/1/10/Winniethepooh.png",//"http://some-img/me",
             title: "Bobi and Me"
@@ -25,6 +26,7 @@ const gNotes = [
     {
         id: "n103",
         type: "note-todos",
+        isPinned: false,
         info: {
             label: "Get my stuff together",
             todos: [
@@ -47,7 +49,8 @@ export const notesService = {
     removeNote,
     saveNote,
     getById,
-    changeNoteStyle
+    changeNoteStyle,
+    piningNote
 }
 
 function query() {
@@ -66,6 +69,15 @@ function checkTodo(noteId, todoIdx) {
     todo.doneAt = (!todo.doneAt) ? Date.now() : null
     _saveToStorage(notes)
     return Promise.resolve(notes)
+}
+
+function piningNote(noteId) {
+    let notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    note.isPinned = (note.isPinned) ? false : true
+    console.log('note.isPinned :', note.isPinned )
+    _saveToStorage(notes)
+    return Promise.resolve()
 }
 
 function removeNote(noteId) {
