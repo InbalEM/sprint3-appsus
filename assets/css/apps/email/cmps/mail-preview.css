@@ -13,13 +13,7 @@
     text-decoration: none;
 }
 
-.mail-preview:hover {
-    background-color: lightgray;
-}
+
 
 .read {}
 
-.unread {
-    background-color: #c4bfbf;
-
-}

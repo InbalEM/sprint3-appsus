@@ -2,6 +2,16 @@
     display: grid;
     grid-template-columns: 5% 95%;
     align-items: center;
-    background-color: #c4bfbf;
+    background-color: #f2eded;
     gap: 10px;
+    box-shadow: 0px 0px 1px 1px;
+    font-family: sans-regular;
+}
+
+.unread {
+    background-color: #c4bfbf;
+}
+
+.mail-list:hover {
+    background-color: lightgray;
 }
