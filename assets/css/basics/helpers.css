@@ -1,0 +1,46 @@
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.grid {
+    display: grid;
+}
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 1fr 1fr;
+}
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main-app {
+    display: flex;
+    flex-direction: column;
+    /* background-color: lightblue; */
+    margin-top: 10%;
+}
+
+.list-style-none{
+    list-style-type: none;
+}

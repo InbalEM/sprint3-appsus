@@ -1,0 +1,23 @@
+.main-layout>*:not(.full) {
+    max-width: 100%;
+}
+
+@media (min-width: 540px) {
+    .main-layout>*:not(.full) {
+        max-width: 500px;
+        /* margin-inline-end: auto;
+        margin-inline-start: auto; */
+    }
+}
+
+@media (min-width: 900px) {
+    .main-layout>*:not(.full) {
+        max-width: 860px;
+    }
+}
+
+@media (min-width: 1020px) {
+    .main-layout>*:not(.full) {
+        max-width: 980px;
+    }
+}

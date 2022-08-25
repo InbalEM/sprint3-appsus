@@ -1,0 +1,7 @@
+.side-bar nav {
+
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+
+}

@@ -1,0 +1,29 @@
+/* ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #e3dede;
+    border-radius: 50px;
+} */
+
+.mail-preview {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.mail-preview:hover {
+    background-color: lightgray;
+}
+
+.read {}
+
+.unread {
+    background-color: #c4bfbf;
+
+}
