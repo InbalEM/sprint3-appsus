@@ -1,14 +1,13 @@
 
 import { mailService } from '../services/mail.service.js'
 
-
 export class MailDetails extends React.Component {
     state = {
         mail: null
     }
 
     componentDidMount() {
-        console.log('this.props:', this.props)
+        
         this.loadMail()
     }
 
@@ -25,30 +24,39 @@ export class MailDetails extends React.Component {
 
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(prevProps.match.params.mailId)
-        console.log(this.props.match.params.mailId)
+        
         if (prevProps.match.params.mailId !== this.props.match.params.mailId) {
             this.loadMail()
         }
     }
 
-    onExit = (id) => {
+    onDelete = (id) => {
         // console.log(id)
+        const deleteFunc = this.props.location.state.decrease
         mailService.deleteEmail(id)
             .then(() => {
                 this.setState({ mail: null })
-
+                deleteFunc()
                 this.props.history.push('/mail')
             })
     }
 
+    onGoBack = () => {
+        this.props.history.push('/mail')
+    }
+
+
     render() {
+       
         const { mail } = this.state
         if (!mail) return <h1>Loading..</h1>
+        
         return (
             <section className='main-details'>
-
-                <span onClick={() => this.onExit(mail.id)}>X</span>
+                <div>
+                <span onClick={() => this.onGoBack()}>X</span>
+                <span onClick={() => this.onDelete(mail.id)} style={{marginInlineStart: '10px'}}><i className="fa-solid fa-trash"></i></span>
+                </div>
                 {/* <button onClick={() => this.goBack}>Back</button> */}
                 <h1 className='subject'>subject: {mail.subject}</h1>
                 <h3 className='body'>body: {mail.body}</h3>

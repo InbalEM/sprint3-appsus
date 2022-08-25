@@ -3,6 +3,7 @@ import { mailService } from '../services/mail.service.js'
 export class MailApp extends React.Component {
     state = {
         mails: null,
+        filterBy: null
     }
 
     componentDidMount = () => {
@@ -11,24 +12,20 @@ export class MailApp extends React.Component {
     }
 
     loadMails = () => {
-        mailService.query()
+        mailService.query(this.state.filterBy)
             .then(mails => this.setState({ mails }))
     }
 
-    onDeleteMail = (id) => {
-        console.log(id)
-        mailService.deleteEmail(id)
-            .then(mails => this.setState({ mails }))
+    onDeleteMail = () => {
+       this.loadMails()
     }
 
-    onClickMail = (id) => {
-        console.log(id)
+    onSetFilter = (filterBy) => {
+        // console.log(filterBy)
+        this.setState({ filterBy }, () => {
+            this.loadMails()
+        })
     }
-
-    componentDidUpdate = () => {
-        console.log('from mailapp:')
-    }
-
 
     render() {
         const { mails } = this.state
@@ -36,7 +33,11 @@ export class MailApp extends React.Component {
         console.log('rendered');
         return (
             <section className="mail-index">
-
+                <ul>
+                    <li>inbox</li>
+                    <li>starred</li>
+                    <li>important</li>
+                </ul>
                 <MailList mails={mails} onDeleteMail={this.onDeleteMail} />
 
             </section>

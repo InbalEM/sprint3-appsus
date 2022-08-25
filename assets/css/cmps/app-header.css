@@ -1,24 +1,54 @@
  header {
-     background: lightcyan;
+    background-color: unset;
+
      border-bottom: 2px solid white;
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
  }
 
  .app-header {
      display: flex;
      justify-content: space-between;
      padding: 20px 0;
+     align-items: center;
+ }
+
+ .logo-header{
+    font-size: 3em;
+    color: lightgrey;
+ }
+
+ #name{
+    width: 50em;
+    height: 5em;
+    border-radius: 11px;
+    background-color: #ffffff80;
+    border: none;
+    color: rgb(97, 95, 95);
+    font-size: 1em;
+    font-weight: bold;
  }
 
  nav a {
      margin: .5em;
+     color: lightyellow;
  }
 
  nav a:active {
-     color: purple;
+     color: black;
  }
 
  nav a.active {
-     color: darkblue;
+     /* color: rgb(103, 93, 93); */
      font-weight: bold;
      text-decoration: overline;
+ }
+
+ .logo{
+    height: auto;
+    width: auto;
+    max-height: 50px;
+    max-width: 250px;
+    padding-inline-start: 2em;
  }

@@ -17,7 +17,7 @@ const loggedinUser = {
     fullname: 'Mahatma Appsus'
 }
 
-function query() {
+function query(filterBy) {
     let emails = _loadFromStorage()
     // let emails
 
@@ -26,9 +26,17 @@ function query() {
         for (let i = 0; i < 10; i++) {
             emails.push(createMail())
         }
-        console.log(emails);
-        _saveToStorage(emails)
     }
+
+    if (filterBy) {
+        let { name } = filterBy
+        console.log('filterBy from service', filterBy);
+        emails = emails.filter(email => (
+            email.subject.includes(name)
+        ))
+    }
+    
+    _saveToStorage(emails)
     gEmails = emails
     console.log(emails);
     return Promise.resolve(emails)
@@ -41,7 +49,7 @@ function createMail() {
         id: utilService.makeId(),
         subject: 'nsadfd adsd!',
         body: utilService.makeLorem(),
-        isRead: true,
+        isRead: utilService.getRandomIntInclusive(0, 1) ? true : false,
         sentAt: new Date().toLocaleTimeString(),
         to: 'momo@momo.com'
     }

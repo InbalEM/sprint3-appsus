@@ -1,11 +1,11 @@
 .main-details {
-    min-height: 80vh;
+    min-height: 54vh;
     margin-top: 10%;
-    background-color: rgb(179, 172, 172);
+    background-color: rgb(196 191 191);
     display: flex;
     flex-direction: column;
     gap: 100px;
-    border-radius: 50px;
+    /* /* border-radius: 50px; */
 }
 
 .main-details .subject {
