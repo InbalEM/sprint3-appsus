@@ -1,0 +1,15 @@
+.email-folder-list ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-inline-start: 2em;
+    font-size: 1.2;
+    padding-top: 2em ;
+}
+
+
+
+.email-folder-list ul > li:hover{
+    background-color: lightgrey;
+    border-width: 10px;
+}

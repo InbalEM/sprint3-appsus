@@ -1,6 +1,7 @@
 import { UserMsg } from './user-msg.jsx';
 
-const { Link, NavLink, withRouter } = ReactRouterDOM
+const { Link, NavLink, withRouter, UseLocation} = ReactRouterDOM
+// import {useLocation} from 'react-router-dom';
 
 export class AppHeader extends React.Component{
 
@@ -8,7 +9,22 @@ export class AppHeader extends React.Component{
     state ={
         filterBy:{
             name: ''
-        }
+        },
+
+        location: window.location.href
+    }
+
+    componentDidMount = () => {
+       
+
+        console.log(this.state.location)
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log(prevProps.match.params)
+        // if (prevProps.match.params.mailId !== this.props.match.params.mailId) {
+        //     this.loadMail()
+        // }
     }
 
     handleChange = ({ target }) => {

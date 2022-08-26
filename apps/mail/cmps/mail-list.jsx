@@ -5,9 +5,9 @@ const { Route, Switch } = ReactRouterDOM
 import { MailPreview } from './mail-preview.jsx'
 import { MailDetails } from './mail-details.jsx'
 import { mailService } from '../services/mail.service.js'
+import {EmailFilter} from './email-filter.jsx'
 
-
-export function MailList({ mails , onDeleteMail}) {
+export function MailList({ mails , onDeleteMail, onUpdateList, onSetFilter}) {
 
     function checkRead(mail) {
         if (!mail.isRead) return 'read'
@@ -15,13 +15,13 @@ export function MailList({ mails , onDeleteMail}) {
     }
 
     const onDelete = (id) => {
-        // console.log(id)
-       
-        mailService.deleteEmail(id)
-            .then(() => {
+        // console.log(id
+        // mailService.deleteEmail(id)
+        //     .then(() => {
                 
-                onDeleteMail()
-            })
+        //         onDeleteMail()
+        //     })
+        onDeleteMail(id)
     }
 
   
@@ -32,8 +32,9 @@ export function MailList({ mails , onDeleteMail}) {
 
     return <section className="mail-app">
         <ul>
-            {/* <div className={`trash `}><i className="fa-solid fa-trash-can"></i></d> */}
+             <li><EmailFilter onSetFilter={onSetFilter}/></li>
             {
+                
                 mails.map(mail =>
                     <li key={mail.id} className={`mail-list ${checkRead(mail)}`}>
                         <div className='mark-option '>
@@ -44,7 +45,7 @@ export function MailList({ mails , onDeleteMail}) {
                         </div>
                        <Link to={{
                         pathname: `/mail/${mail.id}`,
-                        state: {decrease: onDeleteMail}
+                        state: {'decrease': onDeleteMail, 'onUpdateList': onUpdateList}
                         }}>
                             <div className="mail-preview" key={mail.id}>
                                 <MailPreview mail={mail} />

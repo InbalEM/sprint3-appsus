@@ -15,3 +15,7 @@
 .mail-list:hover {
     background-color: lightgray;
 }
+
+.mark-option{
+    cursor: pointer;
+}

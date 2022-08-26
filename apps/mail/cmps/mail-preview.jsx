@@ -26,8 +26,9 @@ export class MailPreview extends React.Component {
     return( 
     <article className="flex space-between align-center">
 
-        <p className="subject">{mail.subject}</p>
-        <p><LongTxt text={mail.body} isLongTxtShown={this.state.isLongTxtShown} descriptionLength={100} setIsExpanded={this.setIsExpanded}/></p>
+        <div className="subject"><LongTxt text={mail.subject} isLongTxtShown={this.state.isLongTxtShown} descriptionLength={10} setIsExpanded={this.setIsExpanded}/></div>
+
+        <div><LongTxt text={mail.body} isLongTxtShown={this.state.isLongTxtShown} descriptionLength={100} setIsExpanded={this.setIsExpanded}/></div>
         <p>{mail.sentAt}</p>
     </article>
     )
