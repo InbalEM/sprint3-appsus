@@ -1,5 +1,5 @@
 import { NotePreview } from './note-preview.jsx';
-import { NoteEdit } from "../cmps/note-edit.jsx"
+// import { NoteEdit } from "../cmps/note-edit.jsx"
 
 const { Link, Route, Switch } = ReactRouterDOM
 

@@ -16,10 +16,8 @@ export function App() {
         
         <section className="app">
             <AppHeader />
-            {/* <SideBar /> */}
             <Switch>
                 <Route path="/mail" component={MailApp} />
-                {/* <Route path="/note/edit" component={NoteEdit} /> */}
                 <Route path="/note" component={NoteApp} />
                 <Route path="/about" component={About} />
                 <Route path="/" component={Home} />

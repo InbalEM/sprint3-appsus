@@ -23,6 +23,18 @@ const gNotes = [
         }
     },
     {
+        id: "n104",
+        type: "note-img",
+        isPinned: false,
+        info: {
+            url: "https://thumbs.dreamstime.com/z/boy-girl-plaing-volleyball-children-illustration-vector-64774183.jpg",//"http://some-img/me",
+            title: "Bobi and Me"
+        },
+        style: {
+            backgroundColor: "lightBlue"
+        }
+    },
+    {
         id: "n103",
         type: "note-todos",
         isPinned: false,
