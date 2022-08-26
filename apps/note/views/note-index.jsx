@@ -66,6 +66,7 @@ export class NoteIndex extends React.Component {
 
     render() {
         const { notes } = this.state
+        console.log('notes:', notes)
         const piningNotes = notes.filter(note => note.isPinned)
         const unPining = notes.filter(note => (!note.isPinned))
         const {loadNotes} =this
@@ -82,6 +83,8 @@ export class NoteIndex extends React.Component {
                     <NoteList notes={piningNotes} onRemoveNote={this.onRemoveNote}
                         onChangeColor={this.onChangeColor} onPiningNote={this.onPiningNote}
                         onDuplicateNote={this.onDuplicateNote} loadNotes={this.loadNotes}/>
+                    
+                    <br /><br />
                     <NoteList notes={unPining} onRemoveNote={this.onRemoveNote}
                         onChangeColor={this.onChangeColor} onPiningNote={this.onPiningNote}
                         onDuplicateNote={this.onDuplicateNote} loadNotes={this.loadNotes}/>

@@ -91,7 +91,7 @@ function piningNote(noteId) {
 function duplicateNote(noteId) {
     let notes = _loadFromStorage()
     let note = notes.find(note => note.id === noteId)
-    let newNote = {...note, id:utilService.makeId(4) }
+    let newNote = { ...note, id: utilService.makeId(4) }
     notes.unshift(newNote)
     _saveToStorage(notes)
     return Promise.resolve()
@@ -105,15 +105,39 @@ function removeNote(noteId) {
 }
 
 function saveNote(note) {
-    switch (note.type) {
-        case 'note-txt':
-            if (note.id) _updateTxtNote(note)
-            else _addTxtNote(note)
+    if (note.id) _updateNote(note)
+    else {
+        switch (note.type) {
+            case 'note-txt':
+                _addTxtNote(note)
+                break
+            case 'note-img':
+                _addImgNote(note)
+        }
     }
     return Promise.resolve()
 }
 
-function _updateTxtNote(noteToUpdate) {
+function _addImgNote(note) {
+    console.log('note:', note)
+    const newNote= {
+        id: utilService.makeId(4),
+        type: "note-img",
+        isPinned: false,
+        info: {
+            url: note.info.url,
+            title: note.info.title
+        }
+    }
+console.log('newNote:', newNote)
+    let notes = _loadFromStorage()
+    notes.unshift(newNote)
+    _saveToStorage(notes)
+    return Promise.resolve()
+
+}
+
+function _updateNote(noteToUpdate) {
     console.log('update note:', noteToUpdate)
     let notes = _loadFromStorage()
     notes = notes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
