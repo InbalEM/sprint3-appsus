@@ -1,5 +1,4 @@
-.note-list {
-    
+.note-list {  
     /* margin-top: 1rem; */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -14,7 +13,7 @@
 .note-list>* {
     margin: 0px 0px;
     border: solid 1px lightslategray;
-    /* display: flex; */
+    border-radius: 3%;
     display: grid;
     grid-template-rows:  5fr 1fr 1fr;
     justify-content: center;
@@ -24,4 +23,8 @@
 
 input.color {
     display: none;
+}
+
+.note-list>li{
+    background-color: #ffffff92;
 }

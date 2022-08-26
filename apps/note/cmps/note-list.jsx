@@ -10,9 +10,7 @@ export class NoteList extends React.Component {
 
     render(){
         const { notes, onRemoveNote, onChangeColor, onPiningNote, onDuplicateNote, loadNotes } = this.props
-        return <section className="">
-
-        <ul className="list-style-none note-list app">
+        return <ul className="list-style-none note-list app">
             {notes.map(note => {
                 const { isPinned } = note
                 const { backgroundColor } = note.style || ''
@@ -33,7 +31,7 @@ export class NoteList extends React.Component {
             })}
         </ul>
 
-    </section>
+   
     }
 }
 // export function NoteList({ notes, onRemoveNote, onChangeColor, onPiningNote, onDuplicateNote, loadNotes }) {

@@ -3,9 +3,9 @@ html{
 }
 
 body {
+    height: 100%;
     margin: 0;
     background-image: url('../../img/background-img.webp');
-    
 }
 
 h1,
