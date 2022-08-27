@@ -32,3 +32,8 @@
     padding: 7px;
     margin-left: 10px
 }
+
+.exit{
+    cursor: pointer;
+    background-color: grey;
+}

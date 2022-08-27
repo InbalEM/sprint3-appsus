@@ -12,18 +12,36 @@ export class ComposeMail extends React.Component {
     }
 
     onSubmit = () => {
-        console.log()
+        console.log(this.state.newMail)
     }
 
     handleChange = ({target}) => {
-        console.log(target.value)
+        const field = target.id
+        const value = target.value
+        this.setState((prevState) => ({
+            newMail: {
+                ...prevState.newMail,
+                [field]: value
+            }
+        })
+        , () => {
+            console.log(this.state.newMail)
+        })
+        // console.log(target.value)
     }
+
+    onGoBack = () => {
+       
+        this.props.history.push('/mail')
+    }
+
 
 
     render() {
         const { email, subject, body } = this.state
         return <section>
             <form onSubmit={() => this.onSubmit()} className='new-mail'>
+                <div onClick={() =>  this.onGoBack()} className="exit">X</div>
                 <input
                     type="email"
                     name="email-address"
