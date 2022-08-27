@@ -1,12 +1,30 @@
-ul.app{
+.note-index {
+    height: 50rem;
+}
+
+ul.note-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, 20rem);
     gap: 4px;
     padding-left: 0px;
-    
 }
 
-ul.app>li{
-    /* justify-content: center; */
-    /* align-items: center; */
+.note-index button.add-btn {
+    background-color: #f3eded;
+    border-radius: 50px;
+    min-height: 3em;
+    width: 5em;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-index button:hover {
+    background-color: #ffffff92;
+}
+
+.note-index button {
+    background: none;
+    border: none;
 }

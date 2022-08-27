@@ -48,7 +48,7 @@ export class AppHeader extends React.Component{
     return <header className="app-header main-layout">
         <div >
         <Link to="/">
-            <img src='../assets/img/Gmail_icon_(2020).svg.png' className='logo'></img><span className='logo-header'>Gmail</span>
+            <img src='../assets/img/Gmail_icon_(2020).svg.png' className='logo'></img><span className='logo-header'>Appsus</span>
         </Link>
         </div>
 

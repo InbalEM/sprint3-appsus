@@ -1,0 +1,9 @@
+.about {
+    margin: 1em;
+    background-color: #ffffff80;
+    border-radius: 2em;
+}
+
+.about>*{
+    padding: 2em;
+}

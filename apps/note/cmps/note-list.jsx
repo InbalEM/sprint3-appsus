@@ -1,5 +1,5 @@
 import { NotePreview } from './note-preview.jsx';
-import { NoteEdit } from "../cmps/note-edit.jsx"
+// import { NoteEdit } from "../cmps/note-edit.jsx"
 
 const { Link, Route, Switch } = ReactRouterDOM
 
@@ -10,7 +10,7 @@ export class NoteList extends React.Component {
 
     render(){
         const { notes, onRemoveNote, onChangeColor, onPiningNote, onDuplicateNote, loadNotes } = this.props
-        return <ul className="list-style-none note-list app">
+        return <ul className="list-style-none note-list">
             {notes.map(note => {
                 const { isPinned } = note
                 const { backgroundColor } = note.style || ''

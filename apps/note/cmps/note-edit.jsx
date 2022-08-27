@@ -117,7 +117,7 @@ export class NoteEdit extends React.Component {
         const { note } = this.state
         notesService.saveNote(note)
             .then(() => {
-                
+
                 const fun = this.props.location.state.decrease
                 fun()
                 this.props.history.push('/note')
@@ -156,19 +156,20 @@ export class NoteEdit extends React.Component {
         })
     }
 
+    onExitEdit = () => {
+        const fun = this.props.location.state.decrease
+        fun()
+        this.props.history.push('/note')
+    }
+
     render() {
         const { note } = this.state
         const { type } = note
         if (!note) return <h1>Loading ... </h1>
-        const { txt , title} = this.state.note.info
+        const { txt, title } = this.state.note.info
         return <form className="note-edit" onSubmit={this.onSubmit}>
-            <h1>edit</h1>
-            <select className=" " onChange={this.onSelectType} defaultValue={"note-txt"}>
-                <option value="note-txt">txt</option>
-                <option value="note-img">image</option>
-                <option value="note-todos">todos</option>
-            </select>
 
+            
             <label htmlFor="note-txt"></label>
             {type === "note-txt" && <textarea rows="50" cols="60" id="note-txt" name="description" value={txt} onChange={this.onChangeNote}>
                 {txt}
@@ -176,8 +177,15 @@ export class NoteEdit extends React.Component {
             {type === "note-img" && <input id="note-txt" type="text" value={title} onChange={this.onChangeNote} />}
             {type === "note-img" && <img src={`${note.info.url}`} alt="" />}
             {type === "note-img" && <input type="file" accept="image/*" onChange={this.onChangeImage} />}
-
-            <button>Save</button>
+            <div>
+            <select className=" " onChange={this.onSelectType} defaultValue={"note-txt"}>
+                <option value="note-txt">txt</option>
+                <option value="note-img">image</option>
+                <option value="note-todos">todos</option>
+            </select>
+                <button>Save</button>
+                <button className="exit-Bun" onClick={this.onExitEdit} >Close</button>
+            </div>
         </form>
     }
 }
