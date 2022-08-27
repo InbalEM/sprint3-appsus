@@ -10,18 +10,18 @@ const gNotes = [
             backgroundColor: "red"
         }
     },
-    {
-        id: "n102",
-        type: "note-img",
-        isPinned: false,
-        info: {
-            url: "https://upload.wikimedia.org/wikipedia/en/1/10/Winniethepooh.png",//"http://some-img/me",
-            title: "Bobi and Me"
-        },
-        style: {
-            backgroundColor: "blue"
-        }
-    },
+    // {
+    //     id: "n102",
+    //     type: "note-img",
+    //     isPinned: false,
+    //     info: {
+    //         url: "https://upload.wikimedia.org/wikipedia/en/1/10/Winniethepooh.png",//"http://some-img/me",
+    //         title: "Bobi and Me"
+    //     },
+    //     style: {
+    //         backgroundColor: "blue"
+    //     }
+    // },
     {
         id: "n104",
         type: "note-img",
@@ -62,7 +62,8 @@ export const notesService = {
     getById,
     changeNoteStyle,
     piningNote,
-    duplicateNote
+    duplicateNote,
+    deleteTodo
 }
 
 function query(filterBy) {
@@ -89,6 +90,16 @@ function checkTodo(noteId, todoIdx) {
     todo.doneAt = (!todo.doneAt) ? Date.now() : null
     _saveToStorage(notes)
     return Promise.resolve(notes)
+}
+
+function deleteTodo(noteId, todoIdx){
+    let notes = _loadFromStorage()
+    let note = notes.find(note => note.id === noteId)
+    let todos = note.info.todos
+    if (todos.length === 1) todos =[]
+    else todos = todos.splice(todoIdx, todoIdx+1)
+    _saveToStorage(notes)
+    return Promise.resolve(todos)
 }
 
 function piningNote(noteId) {

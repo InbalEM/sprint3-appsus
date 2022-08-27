@@ -73,9 +73,9 @@ export class NoteIndex extends React.Component {
         if (!notes[0]) return 'Loading...'
         return (
             <section className="note-index app-layout">
-                <div className="side-bar">
+                {/* <div className=""> */}
                     <NoteFilter onSetFilter={this.onSetFilter} />
-                </div>
+                {/* </div> */}
                 <div className="main-app ">
                     <Link to={{ pathname: "/note/edit", state: { 'decrease': loadNotes } }}><button className ="add-btn">add note</button></Link>
                     {/* <Link to={{ pathname: "/note/edit", state: { 'decrease': loadNotes } }}><input type="text" placeholder = "add note"/></Link> */}
