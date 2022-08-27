@@ -19,14 +19,15 @@ export class NoteList extends React.Component {
                     <NotePreview note={note} />
 
                     <form>
-                    <Link to={{ pathname: `/note/edit/${note.id}`, state: { 'decrease': loadNotes } }}>📝</Link>
-                        <label htmlFor={`color${note.id}`}>🎨</label>
+                    <Link to={{ pathname: `/note/edit/${note.id}`, state: { 'decrease': loadNotes } }}><i className="fa-solid fa-pen-to-square"></i></Link>
+                        <label htmlFor={`color${note.id}`}><i className="fa-solid fa-palette"></i></label>
+                        
                         <input className="color" id={`color${note.id}`} type="color" name={note.id} onChange={onChangeColor} />
-                        <button onClick={() => onRemoveNote(note.id)}>🗑️</button>
-                        <button name={note.id} onClick={() => onPiningNote(note.id)}>📌</button>
-                        <button onClick={() => onDuplicateNote(event, note.id)}>Duplicate Note</button>
+                        
+                        <button onClick={() => onRemoveNote(note.id)}><i className="fa-solid fa-trash"></i></button>
+                        <button name={note.id} onClick={() => onPiningNote(note.id)}><i className="fa-solid fa-thumbtack"></i></button>
+                        <button onClick={() => onDuplicateNote(event, note.id)}><i className="fa-solid fa-copy"></i></button>
                     </form>
-
                 </li>)
             })}
         </ul>

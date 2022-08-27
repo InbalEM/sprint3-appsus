@@ -32,13 +32,13 @@ export class NoteFilter extends React.Component {
 
     render() {
         const { onFilterType } = this
-        return <form className="note-filter">
+        return <section className="side-bar note-filter">
             <ul>
                 <li onClick={() => onFilterType("")} value="">notes</li>
                 <li onClick={() => onFilterType("note-txt")} >text notes</li>
                 <li onClick={() => onFilterType("note-img")} >image notes</li>
                 <li onClick={() => onFilterType("note-todos")} >todos notes</li>
             </ul>
-        </form>
+        </section>
     }
 }
