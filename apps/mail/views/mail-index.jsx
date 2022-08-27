@@ -52,8 +52,14 @@ export class MailApp extends React.Component {
             })
     }
 
-    createMail = () => {
+    createMail = (mail) => {
+        mailService.createMail(mail)
+            .then(() => this.loadMails())
+    }
 
+    onStar = (id) => {
+        mailService.markStar(id)
+            .then(() => this.loadMails())
     }
 
     render() {
@@ -62,16 +68,20 @@ export class MailApp extends React.Component {
         console.log('rendered');
         return (<section>
 
-            <section className="mail-index">
+            <section className="mail-index ">
                 <div>
                     <Link to={{
                         pathname: '/mail/compose',
-                        state: {'create': this.createMail}
+                        state: {'createMail': this.createMail}
                         }}>
                     <div className='compose'><i className="fa-solid fa-pencil"></i>Compose</div></Link>
                     <EmailFolderList onSetFilter={this.onSetFilterBy} />
                 </div>
-                <MailList mails={mails} onDeleteMail={this.onDeleteMail} onSetFilter={this.onSetFilter} onUpdateList={this.onUpdateList} />
+                <MailList mails={mails} 
+                onDeleteMail={this.onDeleteMail} 
+                onSetFilter={this.onSetFilter} 
+                onUpdateList={this.onUpdateList} 
+                onSetStar= {this.onStar} />
 
             </section>
             <Switch>

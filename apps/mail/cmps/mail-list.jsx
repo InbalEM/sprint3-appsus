@@ -7,7 +7,7 @@ import { MailDetails } from './mail-details.jsx'
 import { mailService } from '../services/mail.service.js'
 import {EmailFilter} from './email-filter.jsx'
 
-export function MailList({ mails , onDeleteMail, onUpdateList, onSetFilter}) {
+export function MailList({ mails , onDeleteMail, onUpdateList, onSetFilter, onSetStar}) {
 
     function checkRead(mail) {
         if (!mail.isRead) return 'read'
@@ -15,24 +15,22 @@ export function MailList({ mails , onDeleteMail, onUpdateList, onSetFilter}) {
     }
 
     const onDelete = (id) => {
-        // console.log(id
-        // mailService.deleteEmail(id)
-        //     .then(() => {
-                
-        //         onDeleteMail()
-        //     })
         onDeleteMail(id)
     }
 
-  
-    
-    function onSelectEmail() {
-        console.log("lected")
+    const onStar = (id) => {
+        onSetStar(id)
     }
 
+    // const markStar = (el) => {
+    //     console.log(el)
+    //     // return 'yellow' 
+    // }
+    
+
     return <section className="mail-app">
+             <div><EmailFilter onSetFilter={onSetFilter}/></div>
         <ul>
-             <li><EmailFilter onSetFilter={onSetFilter}/></li>
             {
                 
                 mails.map(mail =>
@@ -40,7 +38,7 @@ export function MailList({ mails , onDeleteMail, onUpdateList, onSetFilter}) {
                         <div className='mark-option '>
                             <span onClick={() => onDelete(mail.id)}><i className="fa-solid fa-trash"></i></span>
                             {/* <span><img src="../../../assets/css/apps/email/img/icons8-important-note-30.png" alt="" /></span> */}
-                            <span className=".star-favorite">☆</span>
+                            <span className={`star-favorite ${mail.isStarred ? `yellow` : ``}`} onClick={() => onStar(mail.id)}>☆</span>
                             <input type="checkbox" id="select" name="select" value="select" />
                         </div>
                        <Link to={{

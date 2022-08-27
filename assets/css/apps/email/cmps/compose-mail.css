@@ -35,5 +35,6 @@
 
 .exit{
     cursor: pointer;
-    background-color: grey;
+    background-color: #f3eded;
+    padding: 5px;
 }

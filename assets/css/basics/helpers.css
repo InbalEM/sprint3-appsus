@@ -36,12 +36,13 @@
     margin-inline-start: 2em;
     font-size: 1.2em;
     padding-top: 2em ;
-
+    cursor: pointer;
 }
 
 .side-bar ul > li:hover{
-    background-color: lightgrey;
-    border-width: 10px;
+    background-color: #f3eded;
+    border-radius: 50px;
+    width: 50%;
 }
 
 .main-app {

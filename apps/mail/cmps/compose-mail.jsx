@@ -1,5 +1,5 @@
 
-
+import { mailService } from "../services/mail.service"
 
 export class ComposeMail extends React.Component {
 
@@ -12,7 +12,9 @@ export class ComposeMail extends React.Component {
     }
 
     onSubmit = () => {
-        console.log(this.state.newMail)
+        const createFunc = this.props.location.state.createMail
+        createFunc(this.state.newMail)
+        this.props.history.push('/mail')
     }
 
     handleChange = ({target}) => {
@@ -23,11 +25,7 @@ export class ComposeMail extends React.Component {
                 ...prevState.newMail,
                 [field]: value
             }
-        })
-        , () => {
-            console.log(this.state.newMail)
-        })
-        // console.log(target.value)
+        }))
     }
 
     onGoBack = () => {

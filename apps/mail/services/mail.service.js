@@ -8,6 +8,8 @@ export const mailService = {
     deleteEmail,
     checkIsRead,
     updateToRead,
+    createMail,
+    markStar,
 }
 
 const KEY = 'emailsDB'
@@ -23,13 +25,13 @@ function query(filterBy) {
     let emails = _loadFromStorage()
     // let emails
 
-    if (!emails) {
-        emails = []
-        for (let i = 0; i < 10; i++) {
-            emails.push(createMail())
-            _saveToStorage(emails)
-        }
-    }
+    // if (!emails) {
+    //     emails = []
+    //     for (let i = 0; i < 10; i++) {
+    //         emails.push(createMail())
+    //         _saveToStorage(emails)
+    //     }
+    // }
 
 
     if (filterBy) {
@@ -44,13 +46,13 @@ function query(filterBy) {
             case 'starred':
                 console.log('filterBy from service', filterBy);
                 emails = emails.filter(email => (
-                    email.isStarred === true
+                    email.isStarred === true && !email.isTrashed
                 ))
                 break;
             case 'sent':
                 console.log('filterBy from service', filterBy);
                 emails = emails.filter(email => (
-                    email.to !== loggedinUser.email
+                    email.to !== loggedinUser.email && !email.isTrashed
                 ))
                 break;
             case 'trashed':
@@ -72,17 +74,23 @@ function query(filterBy) {
 
 
 
-function createMail() {
-    return {
+function createMail({subject, body, email}) {
+    const newMail = {
         id: utilService.makeId(),
-        subject: utilService.makeLorem(20),
-        body: utilService.makeLorem(),
-        isRead: utilService.getRandomIntInclusive(0, 1) > 0.5 ? true : false,
+        subject: subject,
+        body: body,
+        isRead: (email !== loggedinUser.email) ? true : false,
         isStarred: false,
         isTrashed: false,
         sentAt: new Date().toLocaleTimeString(),
-        to: utilService.getRandomIntInclusive(0, 1) > 0.5 ? 'momo@momo.com' : loggedinUser.email
+        to: email
     }
+
+    gEmails.push(newMail)
+
+    _saveToStorage(gEmails)
+    return Promise.resolve()
+
 }
 
 
@@ -108,7 +116,6 @@ function deleteEmail(id) {
 }
 
 function updateToRead(email) {
-    console.log('email from update:', email)
     let mails = _loadFromStorage()
     mails = mails.map(
         mail => mail.id === email.id
@@ -122,7 +129,6 @@ function updateToRead(email) {
 }
 
 function checkIsRead(value) {
-    // let mails = _loadFromStorage()
     let mails = gEmails
     if (value === 'read') { mails = mails.filter(mail => (mail.isRead)) }
     else if (value === 'unread') { mails = mails.filter(mail => (mail.isRead === false)) }
@@ -130,6 +136,18 @@ function checkIsRead(value) {
     console.log(mails)
     
     return Promise.resolve(mails)
+}
+
+function markStar(id){
+    let emails = _loadFromStorage()
+    console.log('star')
+    emails =  emails.map(
+        mail => mail.id === id
+            ? { ...mail, isStarred: !mail.isStarred}
+            : mail
+    )
+   _saveToStorage(emails)
+   return Promise.resolve()
 }
 
 function _saveToStorage(emails) {

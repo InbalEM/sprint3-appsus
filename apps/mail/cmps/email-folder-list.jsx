@@ -16,11 +16,11 @@ export class EmailFolderList extends React.Component {
     render() {
         return <section className="side-bar ">
             <ul>
-                <li  onClick={() => this.filterBy('inbox')}>inbox</li>
-                <li  onClick={() => this.filterBy('sent')}>sent</li>
-                <li  onClick={() => this.filterBy('trashed')}>trashed</li>
-                <li  onClick={() => this.filterBy('starred')}>starred</li>
-                <li  onClick={() => this.filterBy('important')}>important</li>
+                <li  onClick={() => this.filterBy('inbox')}><i className="fa-solid fa-inbox"></i> inbox</li>
+                <li  onClick={() => this.filterBy('sent')}><i className="fa-solid fa-paper-plane"></i> sent</li>
+                <li  onClick={() => this.filterBy('trashed')}><i className="fa-solid fa-trash"></i> trashed</li>
+                <li  onClick={() => this.filterBy('starred')}><i className="fa-regular fa-star"></i> starred</li>
+                {/* <li  onClick={() => this.filterBy('important')}>important</li> */}
             </ul >
         </section >
     }

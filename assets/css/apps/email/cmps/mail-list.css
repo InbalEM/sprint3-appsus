@@ -1,21 +1,27 @@
-.mail-list{
+.mail-list {
     display: grid;
     grid-template-columns: 5% 95%;
     align-items: center;
-    background-color: #f2eded;
+    background-color: #E0E0E0;
     gap: 10px;
-    box-shadow: 0px 0px 1px 1px;
+    box-shadow: 0px 0px 1px 1px #cdd7d7;
     font-family: sans-regular;
 }
 
 .unread {
-    background-color: #c4bfbf;
+    background-color: #ECE7E1;
 }
 
 .mail-list:hover {
-    background-color: lightgray;
+    /* box-shadow: 2px 3px 7px 2px; */
+    box-shadow: inset 2px 3px 7px 2px  #b5b8b8;
 }
 
-.mark-option{
+.mark-option {
     cursor: pointer;
+    margin: auto;
+}
+
+.yellow {
+    color: yellow;
 }

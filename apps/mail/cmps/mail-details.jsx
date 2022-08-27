@@ -33,20 +33,17 @@ export class MailDetails extends React.Component {
     }
 
     componentWillUnmount() {
-       
+
 
     }
 
     onDelete = (id) => {
-        // console.log(id)
         const onDeleteMailFunc = this.props.location.state.decrease
         onDeleteMailFunc(id)
-        // mailService.deleteEmail(id)
-        //     .then(() => {
-                this.setState({ mail: null })
-               
-                this.onGoBack()
-            // })
+        
+        this.setState({ mail: null })
+
+        this.onGoBack()
     }
 
     onGoBack = () => {
@@ -63,13 +60,15 @@ export class MailDetails extends React.Component {
 
         return (
             <section className='main-details'>
-                <div>
-                    <span onClick={() => this.onGoBack()}>X</span>
+                <div className='actions'>
+                    <span onClick={() => this.onGoBack()} className="exit">X</span>
                     <span onClick={() => this.onDelete(mail.id)} style={{ marginInlineStart: '10px' }}><i className="fa-solid fa-trash"></i></span>
                 </div>
-                {/* <button onClick={() => this.goBack}>Back</button> */}
-                <h1 className='subject'>subject: {mail.subject}</h1>
-                <h3 className='body'>body: {mail.body}</h3>
+                <div className='mail-content'>
+                    <h1 className='from'><i className="fa-solid fa-user"></i>{mail.to}</h1>
+                    <h1 className='subject'>{mail.subject}</h1>
+                    <h3 className='body'>{mail.body}</h3>
+                </div>
             </section>
         )
     }
