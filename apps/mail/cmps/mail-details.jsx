@@ -56,7 +56,7 @@ export class MailDetails extends React.Component {
     render() {
 
         const { mail } = this.state
-        if (!mail) return <h1>Loading..</h1>
+        if (!mail) return
 
         return (
             <section className='main-details'>

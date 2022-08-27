@@ -65,7 +65,6 @@ export class MailApp extends React.Component {
     render() {
         const { mails } = this.state
         if (!mails) return <h1>Loading..</h1>
-        console.log('rendered');
         return (<section>
 
             <section className="mail-index ">
