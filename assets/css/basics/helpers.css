@@ -32,14 +32,16 @@
 .side-bar {
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
     gap: 1em;
     margin-inline-start: 2em;
-    font-size: 1.2;
-    padding-top: 2em;
-=======
-    /* background-color: aliceblue; */
->>>>>>> af2f135e227337b66eb60d801609d4186b9ede09
+    font-size: 1.2em;
+    padding-top: 2em ;
+
+}
+
+.side-bar  > li:hover{
+    background-color: lightgrey;
+    border-width: 10px;
 }
 
 .main-app {

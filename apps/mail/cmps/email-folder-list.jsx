@@ -14,7 +14,7 @@ export class EmailFolderList extends React.Component {
     }
 
     render() {
-        return <section className="email-folder-list">
+        return <section className="email-folder-list ">
             <ul>
                 <li  onClick={() => this.filterBy('inbox')}>inbox</li>
                 <li  onClick={() => this.filterBy('sent')}>sent</li>
