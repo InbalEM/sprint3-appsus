@@ -20,8 +20,10 @@
 .mark-option {
     cursor: pointer;
     margin: auto;
+    display: flex;
+    align-items: center;
 }
 
 .yellow {
-    color: yellow;
+    color: rgb(203, 203, 22);
 }
