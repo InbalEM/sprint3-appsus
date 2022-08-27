@@ -1,5 +1,5 @@
 import { notesService } from '../services/note.service.js'
-import { NoteEdit } from './note-edit.jsx'
+// import { NoteEdit } from './note-edit.jsx'
 
 const { Link } = ReactRouterDOM
 

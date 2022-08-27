@@ -1,10 +1,7 @@
 .note-list {  
-    /* margin-top: 1rem; */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
-    /* grid-template-columns: repeat(5, 70rem); */
-    /* grid-template-rows: repeat(5, 200px); */
     justify-content: center;
     align-content: center;
     gap: 2rem;
@@ -27,4 +24,11 @@ input.color {
 
 .note-list>li{
     background-color: #ffffff92;
+}
+
+i{
+    display: flex;
+    font-size: 1.5em;
+    margin-inline-start: 1em;
+    align-content: center;
 }
