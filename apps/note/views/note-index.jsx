@@ -77,7 +77,7 @@ export class NoteIndex extends React.Component {
                     <NoteFilter onSetFilter={this.onSetFilter} />
                 </div>
                 <div className="main-app ">
-                    <Link to={{ pathname: "/note/edit", state: { 'decrease': loadNotes } }}><button>add note</button></Link>
+                    <Link to={{ pathname: "/note/edit", state: { 'decrease': loadNotes } }}><button className ="add-btn">add note</button></Link>
                     {/* <Link to={{ pathname: "/note/edit", state: { 'decrease': loadNotes } }}><input type="text" placeholder = "add note"/></Link> */}
                     <NoteList notes={piningNotes} onRemoveNote={this.onRemoveNote}
                         onChangeColor={this.onChangeColor} onPiningNote={this.onPiningNote}

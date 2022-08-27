@@ -19,7 +19,7 @@ const gNotes = [
             title: "Bobi and Me"
         },
         style: {
-            backgroundColor: "red"
+            backgroundColor: "blue"
         }
     },
     {
