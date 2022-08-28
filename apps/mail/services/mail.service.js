@@ -25,13 +25,13 @@ function query(filterBy) {
     let emails = _loadFromStorage()
     // let emails
 
-    // if (!emails) {
-    //     emails = []
-    //     for (let i = 0; i < 10; i++) {
-    //         emails.push(createMail())
-    //         _saveToStorage(emails)
-    //     }
-    // }
+    if (!emails) {
+        emails = []
+        for (let i = 0; i < 10; i++) {
+            emails.push(create())
+            _saveToStorage(emails)
+        }
+    }
 
 
     if (filterBy) {
@@ -72,6 +72,19 @@ function query(filterBy) {
     return Promise.resolve(emails)
 }
 
+
+function create(){
+    return{
+        id: utilService.makeId(),
+        subject: utilService.makeLorem(20),
+        body: utilService.makeLorem(20),
+        isRead: utilService.getRandomIntInclusive(0,1) > 0.5 ? true : false,
+        isStarred: false,
+        isTrashed: false,
+        sentAt: new Date().toLocaleTimeString(),
+        to: 'momo@gmail.com'
+    }
+}
 
 
 function createMail({subject, body, email}) {
